@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="admin.css" />
+    <title>Admin Page</title>
+ 
+</head>
+
+<body>
+    
+    <a class="btn btn-danger btn-lg btn-log" href="/logout" role="button">LogOut</a>
+    <form action="/admin" method="get">
+        <div class="container">
+            <fieldset id="tab" onchange="this.form.submit()">
+                <div class="tab-container">
+                    <input type="radio" class="tab-input" value="all" id="all" name="tab" <% if (value=="all" ||
+                        value=="" ) { %> checked <% } %> >
+                    <input type="radio" class="tab-input" value="read" id="read" name="tab" <% if (value=="read" ) {
+                        %> checked <% } %> >
+                    <input type="radio" class="tab-input" value="unread" id="unread" name="tab" <% if
+                                (value=="unread" ) { %> checked <% } %>>
+                    <label id="all-label" class="tab tab-label" for="all">All</label>
+                    <label id="read-label" class="tab tab-label" for="read">Read</label>
+                    <label id="unread-label" class="tab tab-label" for="unread">Unread</label>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+
+    <div class="tab-content">
+        <div id="all-content" class="email-list">
+            <% messages.forEach(function(message){ %>
+                <div class="email">
+                    <img class="avatar" src="https://via.placeholder.com/40" alt="Avatar">
+                    <div class="email-details">
+                        <div class="sender">
+                            <%=message.name%>
+                        </div>
+                        <div class="subject">
+                            <%=message.subject%>
+                        </div>
+                        <div class="snippet">
+                            <%= message.message.substring(0, 50) + "..." %><span id="extra_content"
+                                    class="extra_content">
+                                    <%= message.message.substring(50)%>
+                                </span><a id="read_more" class="read_more">Show
+                                    More</a>
+                                <br>
+                                <% if(message.status !="read" ){ %>
+                                    <a class="btn" href="?tab=<%= value %>&read=<%= message._id %>">Mark As
+                                        Read</a>
+                                    <% } %>
+
+                                        <% if(message.status !="unread" ){ %>
+                                            <a class="btn"
+                                                href="?tab=<%= value %>&unread=<%= message._id %>">Mark As Not Read</a>
+                                            <% } %>
+                        </div>
+                    </div>
+                    <div class="date">
+                        <%= message.created %>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+    <script>
+        document.getElementById("read_more").addEventListener('click', changeClass);
+
+        function changeClass() {
+            var content = document.getElementById("extra_content");
+            var btn = document.getElementById("read_more");
+            content.classList.toggle('show');
+
+            if (content.classList.contains("show")) {
+                btn.innerHTML = "Show Less";
+                content.style.display = "block";
+            } else {
+                btn.innerHTML = "Show More";
+                content.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+.env
+.env.development.local
+.env.local
+.env.test.local
+.env.protection.local

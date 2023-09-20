@@ -1,0 +1,160 @@
+
+.btn-log{
+    border-radius: 0;
+}
+
+
+.tab-input {
+    display: none;
+}
+
+/* Container styles */
+.container {
+    border-color: var(--color);
+    max-width: 900px;
+    margin: auto;
+    padding: 0;
+    background-color: hsla(0, 0%, 0%, 00.2px);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px 1px var(--color);
+    backdrop-filter: blur(7.5px);
+    -webkit-backdrop-filter: blur(7.5px);
+    
+}
+
+/* Tabs styles */
+
+
+.tab {
+    background-color: hsla(0, 0%, 0%, 0);
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    border: 0;
+    transition: background-color 0.3s ease;
+    
+}
+
+.tab:hover {
+    background-color: var(--color)88;
+}
+
+#all:checked~#all-label,
+#read:checked~#read-label,
+#unread:checked~#unread-label {
+    background-color: var(--color);
+    color: #f0f0f0;
+    border-bottom: 2px solid #ffffff;
+}
+
+/* Content styles */
+.tab-content {
+    display: block !important;
+    padding: 0px 20px;
+    background-color: hsla(0, 0%, 0%, 00.5px);
+    max-width: 900px;
+    margin: 1rem auto;
+    border-radius: 25px;
+    backdrop-filter: blur(7.5px);
+    -webkit-backdrop-filter: blur(7.5px);
+    box-shadow: 0px 0px 4px 1px var(--color);
+    border-color: var(--color);
+}
+.tab-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+/* Email styles */
+.email {
+    color: white;
+    display: flex;
+    border-bottom: 1px solid var(--color);
+    padding: 40px 15px;
+}
+
+.email:last-child {
+    border-bottom: none;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.email-details {
+    flex-grow: 1;
+}
+
+.sender {
+    font-weight: bold;
+}
+
+.subject {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.snippet {
+    color: #cecece;
+}
+
+.date {
+    color: #777;
+}
+
+/* Responsive styles using media query */
+@media (max-width: 900px) {
+    .container{
+        margin-top: 50px;
+        max-width: 90%;
+    }
+    .tab-content{
+        box-shadow: 0px 0px 0px 0px var(--color);
+        border-color: none;
+    }
+
+
+    .email {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .avatar {
+        margin-bottom: 10px;
+    }
+    .date{
+        margin-top: 20px;
+    }
+
+}
+
+#read_more {
+    display: block;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+
+.extra_content {
+    display: none;
+}
+
+.show {
+    display: block !important;
+}
+
+.read_more {
+    display: none;
+}
+
